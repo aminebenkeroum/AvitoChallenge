@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Frontend developer challenge</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body ng-app="vimeoApp">
+<div class="container">
+	<div class="row">
+		<div ng-controller="FeedController">
+			<div class="page-header">
+			    <h1>Vimeo Challenge <small>Vimeo's top videos</small></h1>
+				<nav aria-label="...">
+				 <ul class="pager">
+				    <li class="next" ng-if="next && pad !== 50"><a href="#" ng-click="doNext()">Next <span aria-hidden="true">&rarr;</span></a></li>
+				  </ul>
+				</nav>
+			</div>
+			<form class="controls form-inline">
+				<div class="form-group">
+					<label>Videos from most liked users</label>
+					<input type="checkbox" class="form-control" ng-model="tendingUsers"  /> 
+				</div>
+				<div class="form-group">
+					<label>Seach videos:</label>
+					<input type="text" class="form-control" name="" ng-model="word" placeholder="Cute little cats">
+				</div>
+				<div class="btn-group" role="group" aria-label="...">
+				  <label>Results to show:</label>
+				  <select ng-model="pad" ng-change="onChange(pad)" ng-options="value for value in availablePadding">
+	  			  </select>
+				</div>
+			</form>
+			<div class="feed list-group">
+				<div class="video list-group-item" ng-repeat="video in videos |  mainFilter: tendingUsers | search: word | startFrom:currentPage*itemsPerPage | limitTo: pad">
+					<a href="{{ video.user.link }}" class="thumbnail">
+				      <img src="{{ video.user.pictures.sizes[2].link }}" alt="{{ video.user.name }}">
+				    </a>
+					<div class="video-details">
+						<a href="{{ video.link }}" class="video-link list-group-item-heading"><h4>{{ video.name }}</h4></a>
+						<p class="list-group-item-text" ng-bind-html="video.description | ellipsis:120"></p>
+						<div class="video-informations">
+							<span><i class="fa fa-comment" aria-hidden="true"></i> {{ video.metadata.connections.comments.total.toLocaleString() }}</span>
+							<span><i class="fa fa-heart" aria-hidden="true"></i> {{ video.metadata.connections.likes.total.toLocaleString() }}</span>
+							<span> <i class="fa fa-eye" aria-hidden="true"></i> {{ video.stats.plays.toLocaleString() }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="assets/js/feed.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
+</body>
+</html>

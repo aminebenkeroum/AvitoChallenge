@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+
+body{
+	font-family: 'Open Sans', sans-serif;
+}
+
+.thumbnail{
+	float: left;
+	height: 102px;
+    width: 102px;
+    margin: 0px 10px;
+}
+
+.page-header{
+	border-radius: 4px 4px 0px 0px;
+	padding: 10px;
+	background: url(../img/background.jpg) no-repeat top left;
+	background-size: cover;
+}
+
+.video-link{
+	text-transform: uppercase;
+    font-weight: 700;
+    color: #fb4827;
+}
+.video-link:hover{
+	text-decoration: none;
+}
+
+.page-header h1{
+	color:white;
+	text-align: right;
+}
+
+.page-header small{
+	font-size: 13px;
+	color:white;
+	font-weight: 300;
+}
+
+.controls{
+	padding: 10px;
+}
+
+.video-informations{
+	padding: 5px 0px 10px;
+    font-size: 12px;
+    float: right;
+    color: #777;
+    font-weight: 300;
+}
+
+.video-informations .fa-heart{
+    color:#e74c3c;
+}
+
+.video-details{
+	float: left;
+	overflow: hidden;
+	height: 100px;
+	width: calc(100% - 122px);
+}
+
+.list-group-item{
+	float: left;
+	width: 100%;
+	transition: background 0.2s;
+}
+
+.list-group-item:hover{
+	background:#eee;
+	transition: background 0.2s;
+}
+
+@media (min-width: 1200px){
+	.container{
+		width: 50%;
+	}
+}
